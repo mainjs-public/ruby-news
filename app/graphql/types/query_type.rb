@@ -14,4 +14,16 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :persons, !types[Types::PersonType] do
     resolve -> (obj, args, ctx) { Person.all }
   end
+
+  field :settings, !types[Types::SettingType] do
+    resolve -> (obj, args, ctx) { Setting.all }
+  end
+
+  field :categories, !types[Types::CategoryType] do
+    resolve -> (obj, args, ctx) { Category.all }
+  end
+
+  field :blogs, !types[Types::BlogType] do
+    resolve -> (obj, args, ctx) { Blog.all }
+  end
 end
