@@ -1,1 +1,0 @@
-web: bin/rails server -e development
