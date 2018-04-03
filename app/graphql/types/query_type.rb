@@ -26,4 +26,8 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :blogs, !types[Types::BlogType] do
     resolve -> (obj, args, ctx) { Blog.all }
   end
+
+  field :comments, !types[Types::CommentType] do
+    resolve -> (obj, args, ctx) { Comment.all }
+  end
 end

@@ -5,11 +5,12 @@ development:
     default:
       # Defines the name of the default database that Mongoid can connect to.
       # (required).
-      database: new24_development
+      # database: new24_development
       # Provides the hosts the default client can connect to. Must be an array
       # of host:port pairs. (required)
-      hosts:
-        - localhost:27017
+      # hosts:
+      #   - localhost:27017
+      uri: mongodb://admin:7a8T1ZZn#9xv@ds163672.mlab.com:63672/new24
       options:
         # Change the default write concern. (default = { w: 1 })
         # write:

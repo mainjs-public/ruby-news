@@ -1,6 +1,7 @@
 class Blog
   include Mongoid::Document
 
+  has_many :comments, dependent: :destroy
   belongs_to :category, validate: true
 
   field :category_id, type: String
