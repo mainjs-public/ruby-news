@@ -1,1 +1,1 @@
-web: bin/rails server -e development -p 80
+web: bin/rails server -e development
