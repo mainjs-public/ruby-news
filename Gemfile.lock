@@ -188,7 +188,7 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
-  graphiql-rails (= 1.4.10)
+  graphiql-rails
   graphql
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
