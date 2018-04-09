@@ -8,11 +8,11 @@ Mutations::AddSetting = GraphQL::Relay::Mutation.define do
   input_field :json, !types.Boolean
   input_field :value, !types.String
 
-  resolve ->(obj, args, ctx) {
+  resolve ->(obj, inputs, ctx) {
     Setting.create!(
-        key: args[:slug],
-        json: args[:json],
-        value: args[:value]
+        key: inputs[:key],
+        json: inputs[:json],
+        value: inputs[:value]
     )
   }
 end
