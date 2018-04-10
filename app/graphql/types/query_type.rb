@@ -19,15 +19,44 @@ Types::QueryType = GraphQL::ObjectType.define do
     resolve -> (obj, args, ctx) {Setting.all}
   end
 
+  field :setting, Types::SettingType do
+    argument :settingId, types.ID, as: :id
+    resolve -> (obj, args, ctx) {
+      Setting.find(args['id'])
+    }
+  end
+
   field :categories, !types[Types::CategoryType] do
     resolve -> (obj, args, ctx) {Category.all}
+  end
+
+  field :category, Types::CategoryType do
+    argument :categoryId, types.ID, as: :id
+    resolve -> (obj, args, ctx) {
+      Category.find(args['id'])
+    }
   end
 
   field :blogs, !types[Types::BlogType] do
     resolve -> (obj, args, ctx) {Blog.all}
   end
 
+  field :blog, Types::BlogType do
+    argument :blogId, types.ID, as: :id
+    resolve -> (obj, args, ctx) {
+      Category.find(args['id'])
+    }
+  end
+
   field :comments, !types[Types::CommentType] do
     resolve -> (obj, args, ctx) {Comment.all}
   end
+
+  field :comment, Types::CommentType do
+    argument :commentId, types.ID, as: :id
+    resolve -> (obj, args, ctx) {
+      Category.find(args['id'])
+    }
+  end
+
 end
