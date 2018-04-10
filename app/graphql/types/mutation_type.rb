@@ -1,6 +1,7 @@
 Types::MutationType = GraphQL::ObjectType.define do
   name "Mutation"
 
+  field :mutationCategory, Mutations::MutationCategory.field
   field :addSetting, Mutations::AddSetting.field
   # TODO: Remove me
   field :testField, types.String do
