@@ -4,7 +4,7 @@ Mutations::DeleteCategory = GraphQL::Relay::Mutation.define do
 
   input_field :categoryId, !types.ID
 
-  return_field :count, types.String
+  return_field :count, types.Int
 
   resolve ->(obj, args, ctx) {
     response = {
