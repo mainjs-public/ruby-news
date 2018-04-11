@@ -3,30 +3,13 @@ Types::QueryType = GraphQL::ObjectType.define do
   # Add root-level fields here.
   # They will be entry points for queries on your schema.
 
-  # TODO: remove me
-  field :testField, types.String do
-    description "An example field added by the generator"
-    resolve ->(obj, args, ctx) {
-      "Hello World!"
-    }
-  end
-
-  field :testObject, types.Int do
-    description "An example field added by the generator"
-    resolve ->(obj, args, ctx) {
-      [10, 20, 20]
-    }
-  end
-
-  field :persons, !types[Types::PersonType] do
-    resolve -> (obj, args, ctx) {Person.all}
-  end
-
   field :settings, !types[Types::SettingType] do
+    description "Get all settings"
     resolve -> (obj, args, ctx) {Setting.all}
   end
 
   field :setting, Types::SettingType do
+    description "Get setting by id"
     argument :settingId, types.ID, as: :id
     resolve -> (obj, args, ctx) {
       Setting.find(args['id'])
@@ -34,21 +17,25 @@ Types::QueryType = GraphQL::ObjectType.define do
   end
 
   field :categories, !types[Types::CategoryType] do
+    description "Get all categories"
     resolve -> (obj, args, ctx) {Category.all}
   end
 
   field :category, Types::CategoryType do
-    argument :categoryId, types.ID, as: :id
+    description "Get category by id"
+    argument :categoryId, !types.ID, as: :id
     resolve -> (obj, args, ctx) {
       Category.find(args['id'])
     }
   end
 
   field :blogs, !types[Types::BlogType] do
+    description "Get all blog"
     resolve -> (obj, args, ctx) {Blog.all}
   end
 
   field :blog, Types::BlogType do
+    description "Get blog by id"
     argument :blogId, types.ID, as: :id
     resolve -> (obj, args, ctx) {
       Category.find(args['id'])
@@ -56,10 +43,12 @@ Types::QueryType = GraphQL::ObjectType.define do
   end
 
   field :comments, !types[Types::CommentType] do
+    description "Get all comment"
     resolve -> (obj, args, ctx) {Comment.all}
   end
 
   field :comment, Types::CommentType do
+    description "Get comment by id"
     argument :commentId, types.ID, as: :id
     resolve -> (obj, args, ctx) {
       Category.find(args['id'])
