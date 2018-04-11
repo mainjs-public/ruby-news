@@ -11,6 +11,13 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
+  field :testObject, types.Int do
+    description "An example field added by the generator"
+    resolve ->(obj, args, ctx) {
+      [10, 20, 20]
+    }
+  end
+
   field :persons, !types[Types::PersonType] do
     resolve -> (obj, args, ctx) {Person.all}
   end

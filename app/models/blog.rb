@@ -9,10 +9,10 @@ class Blog
   field :name, type: String
   field :description, type: String
   field :content, type: String
-  field :created, type: DateTime
-  field :updated, type: DateTime
+  field :created, type: DateTime, default: Time.now
+  field :updated, type: DateTime, default: Time.now
   field :image, type: String
-  field :status, type: Mongoid::Boolean
+  field :status, type: Boolean, default: true
   field :viewd, type: Integer
   field :tags, type: Array
 end
