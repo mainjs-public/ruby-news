@@ -13,6 +13,6 @@ class Blog
   field :updated, type: DateTime, default: Time.now
   field :image, type: String
   field :status, type: Boolean, default: true
-  field :viewd, type: Integer
+  field :viewed, type: Integer
   field :tags, type: Array
 end
