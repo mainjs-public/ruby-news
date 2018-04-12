@@ -1,12 +1,8 @@
 Mutations::MutationCategory = GraphQL::Relay::Mutation.define do
   name "MutationCategory"
-  description 'Add category and Update Category'
-  # TODO: define return fields
-  # return_field :post, Types::PostType
-  return_type Types::CategoryType
+  description 'Add category and update category'
 
-  # TODO: define arguments
-  # input_field :name, !types.String
+  return_type Types::CategoryType
 
   input_field :slug, !types.String
   input_field :name, !types.String
