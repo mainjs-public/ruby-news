@@ -1,18 +1,16 @@
 Mutations::MutationBlog = GraphQL::Relay::Mutation.define do
-  name "MutationCategory"
+  name "MutationBlog"
   description 'Add blog and update blog'
   return_type Types::CategoryType
 
-  input_field :category_id, type: String
-  input_field :slug, type: String
-  input_field :name, type: String
-  input_field :description, type: String
-  input_field :content, type: String
-  input_field :created, type: DateTime, default: Time.now
-  input_field :updated, type: DateTime, default: Time.now
-  input_field :image, type: String
-  input_field :status, type: Boolean, default: true
-  input_field :tags, type: Array
+  input_field :category_id, types.ID
+  input_field :slug, types.String
+  input_field :name, types.String
+  input_field :description, types.String
+  input_field :content, types.String
+  input_field :image, types.String
+  input_field :status, types.Boolean
+  input_field :tags, types[types.String]
 
   resolve ->(obj, inputs, ctx) {
     Blog.create!(
