@@ -8,7 +8,7 @@ Mutations::DeleteBlog = GraphQL::Relay::Mutation.define do
 
   resolve ->(obj, args, ctx) {
     response = {
-    	count: Category.where(id: args[:blogId]).delete
+    	count: Blog.where(id: args[:blogId]).delete
     }
   }
 end
