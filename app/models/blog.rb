@@ -15,4 +15,6 @@ class Blog
   field :status, type: Boolean, default: true
   field :viewed, type: Integer
   field :tags, type: Array
+
+  validates_uniqueness_of :slug
 end
