@@ -11,4 +11,6 @@ class Category
   field :updated, type: DateTime, default: Time.now
   field :image, type: String
   field :status, type: Boolean, default: true
+
+  validates_uniqueness_of :slug
 end

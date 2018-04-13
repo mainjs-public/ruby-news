@@ -2,7 +2,7 @@ Types::CategoryType = GraphQL::ObjectType.define do
   # this type is named 'Category'
   name 'Category'
 
-  field :id, !types.ID
+  field :id, types.ID
   field :slug, !types.String
   field :name, !types.String
   field :description, !types.String
