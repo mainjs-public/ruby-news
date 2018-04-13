@@ -38,7 +38,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     description "Get blog by id"
     argument :blogId, types.ID, as: :id
     resolve -> (obj, args, ctx) {
-      Category.find(args['id'])
+      Blog.find(args['id'])
     }
   end
 
@@ -51,7 +51,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     description "Get comment by id"
     argument :commentId, types.ID, as: :id
     resolve -> (obj, args, ctx) {
-      Category.find(args['id'])
+      Comment.find(args['id'])
     }
   end
 
