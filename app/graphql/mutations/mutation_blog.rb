@@ -13,15 +13,30 @@ Mutations::MutationBlog = GraphQL::Relay::Mutation.define do
   input_field :tags, types[types.String]
 
   resolve ->(obj, inputs, ctx) {
-    Blog.create!(
-        category_id: inputs[:category_id],
-        slug: inputs[:slug],
-        name: inputs[:name],
-        description: inputs[:description],
-        content: inputs[:content],
-        image: inputs[:image],
-        status: inputs[:status],
-        tags: [],
-        )
+    if inputs[:id]
+      blog = Blog.find(inputs[:id])
+      blog.update(
+          category_id: inputs[:category_id],
+          slug: inputs[:slug],
+          name: inputs[:name],
+          description: inputs[:description],
+          content: inputs[:content],
+          image: inputs[:image],
+          status: inputs[:status],
+          tags: [],
+          )
+      blog
+    else
+      Blog.create!(
+          category_id: inputs[:category_id],
+          slug: inputs[:slug],
+          name: inputs[:name],
+          description: inputs[:description],
+          content: inputs[:content],
+          image: inputs[:image],
+          status: inputs[:status],
+          tags: [],
+          )
+    end
   }
 end
