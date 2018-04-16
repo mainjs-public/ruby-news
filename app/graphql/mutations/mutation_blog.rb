@@ -4,6 +4,7 @@ Mutations::MutationBlog = GraphQL::Relay::Mutation.define do
   return_type Types::CategoryType
 
   input_field :category_id, types.ID
+  input_field :id, types.ID
   input_field :slug, !types.String
   input_field :name, !types.String
   input_field :description, types.String
