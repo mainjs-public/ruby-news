@@ -29,6 +29,14 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
+  field :categorySlug, Types::CategoryType do
+    description "Get category by slug"
+    argument :slug, !types.String
+    resolve -> (obj, args, ctx) {
+      Category.find_by(slug: args['slug'])
+    }
+  end
+
   field :blogs, !types[Types::BlogType] do
     description "Get all blog"
     resolve -> (obj, args, ctx) {Blog.all}
@@ -42,6 +50,14 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
+  field :blogSlug, Types::BlogType do
+    description "Get blog by slug"
+    argument :slug, !types.String
+    resolve -> (obj, args, ctx) {
+      Blog.find_by(slug: args['slug'])
+    }
+  end
+
   field :comments, !types[Types::CommentType] do
     description "Get all comment"
     resolve -> (obj, args, ctx) {Comment.all}
@@ -52,6 +68,20 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :commentId, types.ID, as: :id
     resolve -> (obj, args, ctx) {
       Comment.find(args['id'])
+    }
+  end
+
+  field :folders, !types[Types::FolderType] do
+    description "Get folders"
+    resolve -> (obj, args, ctx) {
+      Folder.all
+    }
+  end
+
+  field :images, !types[Types::ImageType] do
+    description "Get images"
+    resolve -> (obj, args, ctx) {
+      Image.all
     }
   end
 
