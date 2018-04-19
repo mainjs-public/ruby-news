@@ -88,7 +88,9 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :imagesByFolderId, !types[Types::ImageType] do
     description "Get images by folder ID"
     argument :folder_id, types.String, as: :id
+    argument :key, types.Int
     resolve -> (obj, args, ctx) {
+      puts args['key']
       images = Image.all;
       retult = images.select do |image|
         image.folder_id == args['id']
