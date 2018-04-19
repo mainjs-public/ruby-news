@@ -1,7 +1,7 @@
 class Image
   include Mongoid::Document
 
-  belongs_to :folder
+  belongs_to :folder, optional: true
 
   field :folder_id, type: String
 

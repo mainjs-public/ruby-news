@@ -1,15 +1,13 @@
 class UploadController < ApplicationController
   def uploadImages
-    uploader = ImageUploader.new(params[:dir]);
+    uploader = ImageUploader.new(params[:path]);
     params[:file].each do |key, value|
       uploader.store!(value)
-      image = Image.new
-      image.name = key
-      image.path = params[:dir]
-      image.save
-
-      puts image
-
+      Image.create(
+          folder_id: params[:folder_id],
+          name: key,
+          path: "#{params[:path]}/#{key}"
+      )
     end
     render json: ['1']
   end
