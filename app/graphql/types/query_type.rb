@@ -16,6 +16,14 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
+  field :settingByKey, Types::SettingType do
+    description "Get setting by key"
+    argument :key, types.String
+    resolve -> (obj, args, ctx) {
+      Setting.find_by(key: args['key'])
+    }
+  end
+
   field :categories, !types[Types::CategoryType] do
     description "Get all categories"
     resolve -> (obj, args, ctx) {Category.all}
