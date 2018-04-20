@@ -13,6 +13,7 @@ Types::BlogType = GraphQL::ObjectType.define do
   field :viewed, !types.Int
   field :tag, !types[types.String]
   field :status, !types.Boolean
+  field :category_id, !types.ID
   field :category, -> {Types::CategoryType}
   field :comments, -> {!types[Types::CommentType]}
 end
