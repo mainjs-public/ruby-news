@@ -4,5 +4,5 @@ class Setting
   field :key, type: String
   field :value, type: String
 
-  validates :key, uniqueness: true
+  validates_uniqueness_of :key
 end
