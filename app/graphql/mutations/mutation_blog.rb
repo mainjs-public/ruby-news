@@ -24,7 +24,7 @@ Mutations::MutationBlog = GraphQL::Relay::Mutation.define do
           content: inputs[:content],
           image: inputs[:image],
           status: inputs[:status],
-          tags: [],
+          tags: inputs[:tags],
           )
       blog
     else
@@ -36,7 +36,7 @@ Mutations::MutationBlog = GraphQL::Relay::Mutation.define do
           content: inputs[:content],
           image: inputs[:image],
           status: inputs[:status],
-          tags: [],
+          tags: inputs[:tags],
           )
     end
   }
