@@ -8,7 +8,6 @@ Mutations::MutationCategory = GraphQL::Relay::Mutation.define do
   input_field :slug, !types.String
   input_field :name, !types.String
   input_field :description, types.String
-  input_field :content, types.String
   input_field :image, types.String
   input_field :status, types.Boolean
 
@@ -19,7 +18,6 @@ Mutations::MutationCategory = GraphQL::Relay::Mutation.define do
           slug: inputs[:slug],
           name: inputs[:name],
           description: inputs[:description],
-          content: inputs[:content],
           image: inputs[:image],
           status: inputs[:status],
           )
@@ -29,7 +27,6 @@ Mutations::MutationCategory = GraphQL::Relay::Mutation.define do
           slug: inputs[:slug],
           name: inputs[:name],
           description: inputs[:description],
-          content: inputs[:content],
           image: inputs[:image],
           status: inputs[:status],
           )

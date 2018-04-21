@@ -1,12 +1,11 @@
 class Category
   include Mongoid::Document
 
-  has_many :blogs, dependent: :destroy
+  has_many :blogs, dependent: :restrict
 
   field :slug, type: String
   field :name, type: String
   field :description, type: String
-  field :content, type: String
   field :created, type: DateTime, default: Time.now
   field :updated, type: DateTime, default: Time.now
   field :image, type: String
