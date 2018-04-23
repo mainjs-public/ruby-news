@@ -102,7 +102,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :key, types.Int
     resolve -> (obj, args, ctx) {
       puts args['key']
-      images = Image.all;
+      images = Image.all
       retult = images.select do |image|
         image.folder_id == args['id']
       end
@@ -117,7 +117,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
-  field :contact, Types::CommentType do
+  field :contact, Types::ContactType do
     description "Get contact by id"
     argument :contactId, types.ID, as: :id
     resolve -> (obj, args, ctx) {
