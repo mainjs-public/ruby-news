@@ -1,3 +1,5 @@
+require 'jwt'
+
 class Functions::SignInUser < GraphQL::Function
   # Define `initialize` to store field-level options, eg
   #
@@ -27,15 +29,25 @@ class Functions::SignInUser < GraphQL::Function
     return unless user
     return unless user.authenticate(args[:password])
 
-    # use Ruby on Rails - ActiveSupport::MessageEncryptor, to build a token
-    crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base.byteslice(0..31))
-    token = crypt.encrypt_and_sign("user-id:#{ user.id }")
+    puts user._id
 
-    ctx[:session][:token] = token
+    payload = {
+        context: {
+            user: {
+                id: user._id,
+                email: user.email,
+            }
+        }
+    }
 
-    OpenStruct.new({
-                       token: token,
-                       user: user
-                   })
+    hmac_secret = Rails.configuration.jwt['hmac_secret']
+
+    token = JWT.encode payload, hmac_secret, 'HS256'
+
+    # decoded_token = JWT.decode token, hmac_secret, true, {algorithm: 'HS256'}
+
+    # puts decoded_token
+
+    OpenStruct.new({token: token, user: user})
   end
 end

@@ -5,7 +5,10 @@ Types::QueryType = GraphQL::ObjectType.define do
 
   field :settings, !types[Types::SettingType] do
     description "Get all settings"
-    resolve -> (obj, args, ctx) {Setting.all}
+    resolve -> (obj, args, ctx) {
+      puts ctx[:current_user]
+      Setting.all
+    }
   end
 
   field :setting, Types::SettingType do

@@ -25,6 +25,8 @@ module New24
     config.load_defaults 5.1
     config.api_only = true
 
+    config.jwt = config_for(:jwt)
+
     # Rails 5
 
     config.middleware.insert_before 0, Rack::Cors do
