@@ -1,6 +1,9 @@
 require 'jwt'
 
 class Functions::SignInUser < GraphQL::Function
+
+  description 'SignIn'
+
   # Define `initialize` to store field-level options, eg
   #
   #     field :myField, function: Functions::SignInUser.new(type: MyType)
@@ -29,12 +32,12 @@ class Functions::SignInUser < GraphQL::Function
     return unless user
     return unless user.authenticate(args[:password])
 
-    puts user._id
+    # puts user._id
 
     payload = {
         context: {
             user: {
-                id: user._id,
+                id: user._id.to_s,
                 email: user.email,
             }
         }
@@ -45,7 +48,7 @@ class Functions::SignInUser < GraphQL::Function
     token = JWT.encode payload, hmac_secret, 'HS256'
 
     # decoded_token = JWT.decode token, hmac_secret, true, {algorithm: 'HS256'}
-
+    #
     # puts decoded_token
 
     OpenStruct.new({token: token, user: user})

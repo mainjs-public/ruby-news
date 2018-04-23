@@ -110,4 +110,19 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
+  field :contacts, !types[Types::ContactType] do
+    description "Get contacts"
+    resolve -> (obj, args, ctx) {
+      Contact.all
+    }
+  end
+
+  field :contact, Types::CommentType do
+    description "Get contact by id"
+    argument :contactId, types.ID, as: :id
+    resolve -> (obj, args, ctx) {
+      Contact.find(args['id'])
+    }
+  end
+
 end
