@@ -16,22 +16,22 @@ Mutations::MutationContact = GraphQL::Relay::Mutation.define do
     if inputs[:id]
       contact = Contact.find(inputs[:id])
       contact.update(
-          firstName: inputs[:slug],
-          lastName: inputs[:name],
-          email: inputs[:description],
-          phone: inputs[:image],
-          message: inputs[:status],
-          read: inputs[:status],
+          firstName: inputs[:firstName],
+          lastName: inputs[:lastName],
+          email: inputs[:email],
+          phone: inputs[:phone],
+          message: inputs[:message],
+          read: inputs[:read],
           )
       contact
     else
       Contact.create!(
-          firstName: inputs[:slug],
-          lastName: inputs[:name],
-          email: inputs[:description],
-          phone: inputs[:image],
-          message: inputs[:status],
-          read: inputs[:status],
+          firstName: inputs[:firstName],
+          lastName: inputs[:lastName],
+          email: inputs[:email],
+          phone: inputs[:phone],
+          message: inputs[:message],
+          read: inputs[:read],
           )
     end
   }
