@@ -1,7 +1,7 @@
 Types::ContactType = GraphQL::ObjectType.define do
   name "Contact"
-  field :fistName, types.String
-  field :lastname, types.String
+  field :firstName, types.String
+  field :lastName, types.String
   field :email, types.String
   field :phone, types.String
   field :message, types.String

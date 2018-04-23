@@ -1,6 +1,6 @@
 class Contact
   include Mongoid::Document
-  field :fistName, type: String
+  field :firstName, type: String
   field :lastName, type: String
   field :email, type: String
   field :phone, type: String
