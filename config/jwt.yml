@@ -1,0 +1,4 @@
+production:
+  hmac_secret: 'my$ecret1K3y'
+development:
+  hmac_secret: 'my$ecret1K3y'

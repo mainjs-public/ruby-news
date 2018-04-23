@@ -11,14 +11,12 @@ Mutations::UpdateSetting = GraphQL::Relay::Mutation.define do
   resolve ->(obj, args, ctx) {
     if Setting.where(key: args[:key]).exists?
       setting = Setting.find_by(key: args[:key]) do |setting|
-        puts '----Update'
         setting.json = args[:json]
         setting.value = args[:value]
       end
       setting.save
       return setting
     end
-    puts '----find_or_create_by'
     Setting.find_or_create_by(key: args[:key]) do |setting|
       setting.json = args[:json]
       setting.value = args[:value]

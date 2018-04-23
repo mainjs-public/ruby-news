@@ -5,7 +5,10 @@ Types::QueryType = GraphQL::ObjectType.define do
 
   field :settings, !types[Types::SettingType] do
     description "Get all settings"
-    resolve -> (obj, args, ctx) {Setting.all}
+    resolve -> (obj, args, ctx) {
+      puts ctx[:current_user]
+      Setting.all
+    }
   end
 
   field :setting, Types::SettingType do
@@ -104,6 +107,21 @@ Types::QueryType = GraphQL::ObjectType.define do
         image.folder_id == args['id']
       end
       retult
+    }
+  end
+
+  field :contacts, !types[Types::ContactType] do
+    description "Get contacts"
+    resolve -> (obj, args, ctx) {
+      Contact.all
+    }
+  end
+
+  field :contact, Types::CommentType do
+    description "Get contact by id"
+    argument :contactId, types.ID, as: :id
+    resolve -> (obj, args, ctx) {
+      Contact.find(args['id'])
     }
   end
 
