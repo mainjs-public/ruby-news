@@ -125,4 +125,11 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
+  field :countUnReadContact, !types.Int do
+    description "Count Un Read Contact"
+    resolve -> (obj, args, ctx) {
+      Contact.where(read: false).count
+    }
+  end
+
 end
