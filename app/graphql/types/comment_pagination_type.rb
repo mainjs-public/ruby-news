@@ -5,4 +5,5 @@ Types::CommentPaginationType = GraphQL::ObjectType.define do
   field :length, !types.Int
   field :count, !types.Int
   field :data, -> {!types[Types::CommentType]}
+  field :hasNextPage, !types.Boolean
 end

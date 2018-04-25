@@ -64,11 +64,14 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :length, types.Int
 
     resolve -> (obj, args, ctx) {
+      count = Blog.count
+      puts data.methods
       OpenStruct.new({
-           count: Blog.count,
+           count: count,
            start: args['start'],
            length: args['length'],
-           data: Blog.all().sort({created: -1}).skip(args['start']).limit(args['length'])
+           data: Blog.all().sort({created: -1}).skip(args['start']).limit(args['length']),
+           hasNextPage: (args['start'] + args['length']) < count
        })
     }
   end
@@ -78,13 +81,17 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :start, types.Int
     argument :length, types.Int
 
+    categories =
+
     resolve -> (obj, args, ctx) {
+      count = Category.count
       OpenStruct.new({
-                         count: Category.count,
-                         start: args['start'],
-                         length: args['length'],
-                         data: Category.all().sort({created: -1}).skip(args['start']).limit(args['length'])
-                     })
+           count: count,
+           start: args['start'],
+           length: args['length'],
+           data: Category.all().sort({created: -1}).skip(args['start']).limit(args['length']),
+           hasNextPage: (args['start'] + args['length']) < count
+       })
     }
   end
 
@@ -94,12 +101,14 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :length, types.Int
 
     resolve -> (obj, args, ctx) {
+      count = Comment.count
       OpenStruct.new({
-                         count: Comment.count,
-                         start: args['start'],
-                         length: args['length'],
-                         data: Comment.all().sort({created: -1}).skip(args['start']).limit(args['length'])
-                     })
+           count: count,
+           start: args['start'],
+           length: args['length'],
+           data: Comment.all().sort({created: -1}).skip(args['start']).limit(args['length']),
+           hasNextPage: (args['start'] + args['length']) < count
+       })
     }
   end
 
@@ -109,12 +118,14 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :length, types.Int
 
     resolve -> (obj, args, ctx) {
+      count Contact.count
       OpenStruct.new({
-                         count: Contact.count,
-                         start: args['start'],
-                         length: args['length'],
-                         data: Contact.all().sort({created: -1}).skip(args['start']).limit(args['length'])
-                     })
+           count: count,
+           start: args['start'],
+           length: args['length'],
+           data: Contact.all().sort({created: -1}).skip(args['start']).limit(args['length']),
+           hasNextPage: (args['start'] + args['length']) < count
+       })
     }
   end
 

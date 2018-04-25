@@ -5,4 +5,5 @@ Types::CategoryPaginationType = GraphQL::ObjectType.define do
   field :length, !types.Int
   field :count, !types.Int
   field :data, -> {!types[Types::CategoryType]}
+  field :hasNextPage, !types.Boolean
 end
