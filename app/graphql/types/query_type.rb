@@ -29,7 +29,9 @@ Types::QueryType = GraphQL::ObjectType.define do
 
   field :categories, !types[Types::CategoryType] do
     description "Get all categories"
-    resolve -> (obj, args, ctx) {Category.all}
+    resolve -> (obj, args, ctx) {
+      Category.all().sort({ created: -1 })
+    }
   end
 
   field :category, Types::CategoryType do
@@ -50,7 +52,9 @@ Types::QueryType = GraphQL::ObjectType.define do
 
   field :blogs, !types[Types::BlogType] do
     description "Get all blog"
-    resolve -> (obj, args, ctx) {Blog.all}
+    resolve -> (obj, args, ctx) {
+      Blog.all().sort({ created: -1 })
+    }
   end
 
   field :blog, Types::BlogType do
@@ -58,6 +62,14 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :blogId, types.ID, as: :id
     resolve -> (obj, args, ctx) {
       Blog.find(args['id'])
+    }
+  end
+
+  field :getBlogLatest, !types[Types::BlogType] do
+    description "Get blog latest"
+    argument :number, types.Int
+    resolve -> (obj, args, ctx) {
+      Blog.where({}).sort({ created: -1 }).take(args['number'])
     }
   end
 
@@ -71,7 +83,9 @@ Types::QueryType = GraphQL::ObjectType.define do
 
   field :comments, !types[Types::CommentType] do
     description "Get all comment"
-    resolve -> (obj, args, ctx) {Comment.all}
+    resolve -> (obj, args, ctx) {
+      Comment.all().all().sort({ created: -1 })
+    }
   end
 
   field :comment, Types::CommentType do
@@ -113,7 +127,7 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :contacts, !types[Types::ContactType] do
     description "Get contacts"
     resolve -> (obj, args, ctx) {
-      Contact.all
+      Contact.all().sort({ created: -1 })
     }
   end
 
