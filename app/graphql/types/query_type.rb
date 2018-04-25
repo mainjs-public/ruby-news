@@ -30,7 +30,7 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :categories, !types[Types::CategoryType] do
     description "Get all categories"
     resolve -> (obj, args, ctx) {
-      Category.all().sort({ created: -1 })
+      Category.all().sort({created: -1})
     }
   end
 
@@ -53,7 +53,68 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :blogs, !types[Types::BlogType] do
     description "Get all blog"
     resolve -> (obj, args, ctx) {
-      Blog.all().sort({ created: -1 })
+      Blog.all().sort({created: -1})
+    }
+  end
+
+  # Pagination
+  field :blogPagination, Types::BlogPaginationType do
+    description "Get blog for pagination"
+    argument :start, types.Int
+    argument :length, types.Int
+
+    resolve -> (obj, args, ctx) {
+      OpenStruct.new({
+           count: Blog.count,
+           start: args['start'],
+           length: args['length'],
+           data: Blog.all().sort({created: -1}).skip(args['start']).limit(args['length'])
+       })
+    }
+  end
+
+  field :categoryPagination, Types::CategoryPaginationType do
+    description "Get category for pagination"
+    argument :start, types.Int
+    argument :length, types.Int
+
+    resolve -> (obj, args, ctx) {
+      OpenStruct.new({
+                         count: Category.count,
+                         start: args['start'],
+                         length: args['length'],
+                         data: Category.all().sort({created: -1}).skip(args['start']).limit(args['length'])
+                     })
+    }
+  end
+
+  field :commentPagination, Types::CommentPaginationType do
+    description "Get comment for pagination"
+    argument :start, types.Int
+    argument :length, types.Int
+
+    resolve -> (obj, args, ctx) {
+      OpenStruct.new({
+                         count: Comment.count,
+                         start: args['start'],
+                         length: args['length'],
+                         data: Comment.all().sort({created: -1}).skip(args['start']).limit(args['length'])
+                     })
+    }
+  end
+
+  field :contactPagination, Types::ContactPaginationType do
+    description "Get contact for pagination"
+    argument :start, types.Int
+    argument :length, types.Int
+
+    resolve -> (obj, args, ctx) {
+      OpenStruct.new({
+                         count: Contact.count,
+                         start: args['start'],
+                         length: args['length'],
+                         data: Contact.all().sort({created: -1}).skip(args['start']).limit(args['length'])
+                     })
     }
   end
 
@@ -69,7 +130,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     description "Get blog latest"
     argument :number, types.Int
     resolve -> (obj, args, ctx) {
-      Blog.where({}).sort({ created: -1 }).take(args['number'])
+      Blog.where({}).sort({created: -1}).take(args['number'])
     }
   end
 
@@ -84,7 +145,7 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :comments, !types[Types::CommentType] do
     description "Get all comment"
     resolve -> (obj, args, ctx) {
-      Comment.all().all().sort({ created: -1 })
+      Comment.all().all().sort({created: -1})
     }
   end
 
@@ -127,7 +188,7 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :contacts, !types[Types::ContactType] do
     description "Get contacts"
     resolve -> (obj, args, ctx) {
-      Contact.all().sort({ created: -1 })
+      Contact.all().sort({created: -1})
     }
   end
 
