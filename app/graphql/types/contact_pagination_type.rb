@@ -5,4 +5,5 @@ Types::ContactPaginationType = GraphQL::ObjectType.define do
   field :length, !types.Int
   field :count, !types.Int
   field :data, -> {!types[Types::ContactType]}
+  field :hasNextPage, !types.Boolean
 end
