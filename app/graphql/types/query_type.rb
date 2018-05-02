@@ -115,7 +115,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :length, types.Int
 
     resolve -> (obj, args, ctx) {
-      count Contact.count
+      count = Contact.count
       OpenStruct.new({
            count: count,
            start: args['start'],
