@@ -7,8 +7,12 @@ Mutations::DeleteCategory = GraphQL::Relay::Mutation.define do
   return_field :count, types.Int
 
   resolve ->(obj, args, ctx) {
-    response = {
-    	count: Category.where(id: args[:categoryId]).delete
-    }
+  	unless ctx[:current_user]
+  	 	GraphQL::ExecutionError.new("You don't have permission to mutation data.")
+  	else
+	    response = {
+	    	count: Category.where(id: args[:categoryId]).delete
+	    }
+	end	
   }
 end

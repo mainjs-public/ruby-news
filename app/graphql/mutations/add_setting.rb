@@ -9,10 +9,14 @@ Mutations::AddSetting = GraphQL::Relay::Mutation.define do
   input_field :value, !types.String
 
   resolve ->(obj, inputs, ctx) {
-    Setting.create!(
-        key: inputs[:key],
-        json: inputs[:json],
-        value: inputs[:value]
-    )
+    unless ctx[:current_user]
+      GraphQL::ExecutionError.new("You don't have permission to mutation data.")
+    else
+      Setting.create!(
+          key: inputs[:key],
+          json: inputs[:json],
+          value: inputs[:value]
+      )
+    end
   }
 end

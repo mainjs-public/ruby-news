@@ -9,9 +9,13 @@ Mutations::CreateFolder = GraphQL::Relay::Mutation.define do
   input_field :path, !types.String
 
   resolve ->(obj, inputs, ctx) {
-    Folder.create!(
-        name: inputs[:name],
-        path: inputs[:path]
-    )
+    unless ctx[:current_user]
+      GraphQL::ExecutionError.new("You don't have permission to mutation data.")
+    else
+      Folder.create!(
+          name: inputs[:name],
+          path: inputs[:path]
+      )
+    end
   }
 end

@@ -15,8 +15,9 @@ class GraphqlController < ApplicationController
 
   def current_user
     hmac_secret = Rails.configuration.jwt['hmac_secret']
-    token = "eyJhbGciOiJIUzI1NiJ9.eyJjb250ZXh0Ijp7InVzZXIiOnsiaWQiOiI1YWQ4NWU4ZmRmYmEzMDIwMmMwNTU4YWQiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSJ9fX0.hbu-bGjFtYRQ9izOK9AVz7mElU9pmcFXEmaX5vEpjs4"
-    # token request.headers["Authorization"]
+    # token = "eyJhbGciOiJIUzI1NiJ9.eyJjb250ZXh0Ijp7InVzZXIiOnsiaWQiOiI1YWQ4NWU4ZmRmYmEzMDIwMmMwNTU4YWQiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSJ9fX0.hbu-bGjFtYRQ9izOK9AVz7mElU9pmcFXEmaX5vEpjs4"
+    token = request.headers["Authorization"]
+    # puts request.headers["Authorization"]
 
     decoded_token = JWT.decode token, hmac_secret, true, {algorithm: 'HS256'}
     user_id = decoded_token[0]['context']['user']['id']
