@@ -4,17 +4,19 @@ Mutations::AddComment = GraphQL::Relay::Mutation.define do
 
   return_type Types::CommentType
 
+  input_field :blog_id, !types.ID
   input_field :name, !types.String
   input_field :email, !types.String
   input_field :website, types.String
   input_field :comment, !types.String
 
   resolve ->(obj, args, ctx) {
-    Setting.create!(
+    Comment.create!(
         name: args[:name],
         email: args[:email],
         website: args[:website],
-        comment: args[:comment]
+        comment: args[:comment],
+        blog_id: inputs[:blog_id],
     )
   }
 end
