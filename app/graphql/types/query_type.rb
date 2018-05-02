@@ -65,7 +65,6 @@ Types::QueryType = GraphQL::ObjectType.define do
 
     resolve -> (obj, args, ctx) {
       count = Blog.count
-      puts data.methods
       OpenStruct.new({
            count: count,
            start: args['start'],
@@ -80,8 +79,6 @@ Types::QueryType = GraphQL::ObjectType.define do
     description "Get category for pagination"
     argument :start, types.Int
     argument :length, types.Int
-
-    categories =
 
     resolve -> (obj, args, ctx) {
       count = Category.count
