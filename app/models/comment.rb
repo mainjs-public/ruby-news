@@ -4,7 +4,6 @@ class Comment
   has_many :comments, dependent: :destroy
 
   belongs_to :blog, validate: true
-  belongs_to :comment, validate: true
 
   field :name, type: String
   field :email, type: String

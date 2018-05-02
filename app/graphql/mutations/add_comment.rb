@@ -16,7 +16,7 @@ Mutations::AddComment = GraphQL::Relay::Mutation.define do
         email: args[:email],
         website: args[:website],
         comment: args[:comment],
-        blog_id: inputs[:blog_id],
+        blog_id: args[:blog_id],
     )
   }
 end
