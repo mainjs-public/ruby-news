@@ -8,8 +8,13 @@ Mutations::DeleteFolder = GraphQL::Relay::Mutation.define do
   return_field :count, types.Int
 
   resolve ->(obj, args, ctx) {
-    response = {
-        count: Folder.where(id: args[:id]).delete
-    }
+
+  	unless ctx[:current_user]
+  	 	GraphQL::ExecutionError.new("You don't have permission to mutation data.")
+  	else
+	  	response = {
+	        count: Folder.where(id: args[:id]).delete
+	    }
+    end
   }
 end
