@@ -10,7 +10,7 @@ development:
       # of host:port pairs. (required)
       # hosts:
       #   - localhost:27017
-      uri: <%= ENV['MONGODB_URI'] %>
+      uri: mongodb://admin:7a8T1ZZn#9xv@ds163672.mlab.com:63672/new24
       options:
         # Change the default write concern. (default = { w: 1 })
         # write:
@@ -149,8 +149,13 @@ development:
 test:
   clients:
     default:
-      uri: <%= ENV['MONGODB_URI'] %>
+      database: new24_test
+      hosts:
+        - localhost:27017
       options:
+        read:
+          mode: :primary
+        max_pool_size: 1
 production:
   # Configure available database clients. (required)
   clients:
@@ -163,5 +168,5 @@ production:
       # of host:port pairs. (required)
       # hosts:
       #   - localhost:27017
-      uri: <%= ENV['MONGODB_URI'] %>
+      uri: mongodb://admin:7a8T1ZZn#9xv@ds163672.mlab.com:63672/new24
       options:
