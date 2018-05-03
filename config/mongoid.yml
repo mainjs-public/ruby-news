@@ -149,13 +149,8 @@ development:
 test:
   clients:
     default:
-      database: new24_test
-      hosts:
-        - localhost:27017
+      uri: mongodb://admin:7a8T1ZZn#9xv@ds163672.mlab.com:63672/new24
       options:
-        read:
-          mode: :primary
-        max_pool_size: 1
 production:
   # Configure available database clients. (required)
   clients:
