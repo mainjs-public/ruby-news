@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b08483dc-83d4-4194-a4e0-24773880cd43" name="Default" comment="merge code">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/graphql_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/graphql_controller.rb" />
-      <change beforePath="$PROJECT_DIR$/app/graphql/mutations/add_setting.rb" afterPath="$PROJECT_DIR$/app/graphql/mutations/add_setting.rb" />
-      <change beforePath="$PROJECT_DIR$/app/graphql/mutations/create_folder.rb" afterPath="$PROJECT_DIR$/app/graphql/mutations/create_folder.rb" />
-      <change beforePath="$PROJECT_DIR$/app/graphql/mutations/delete_blog.rb" afterPath="$PROJECT_DIR$/app/graphql/mutations/delete_blog.rb" />
-      <change beforePath="$PROJECT_DIR$/app/graphql/mutations/delete_category.rb" afterPath="$PROJECT_DIR$/app/graphql/mutations/delete_category.rb" />
-      <change beforePath="$PROJECT_DIR$/app/graphql/mutations/delete_contact.rb" afterPath="$PROJECT_DIR$/app/graphql/mutations/delete_contact.rb" />
-      <change beforePath="$PROJECT_DIR$/app/graphql/mutations/delete_folder.rb" afterPath="$PROJECT_DIR$/app/graphql/mutations/delete_folder.rb" />
-      <change beforePath="$PROJECT_DIR$/app/graphql/mutations/delete_image.rb" afterPath="$PROJECT_DIR$/app/graphql/mutations/delete_image.rb" />
-      <change beforePath="$PROJECT_DIR$/app/graphql/mutations/mutation_blog.rb" afterPath="$PROJECT_DIR$/app/graphql/mutations/mutation_blog.rb" />
-      <change beforePath="$PROJECT_DIR$/app/graphql/mutations/mutation_category.rb" afterPath="$PROJECT_DIR$/app/graphql/mutations/mutation_category.rb" />
-      <change beforePath="$PROJECT_DIR$/app/graphql/mutations/update_setting.rb" afterPath="$PROJECT_DIR$/app/graphql/mutations/update_setting.rb" />
-    </list>
+    <list default="true" id="b08483dc-83d4-4194-a4e0-24773880cd43" name="Default" comment="merge code" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -204,12 +190,12 @@
       <workItem from="1524223938636" duration="599000" />
       <workItem from="1524470765355" duration="154000" />
       <workItem from="1524482110153" duration="590000" />
-      <workItem from="1525312710144" duration="321000" />
+      <workItem from="1525312710144" duration="410000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2709000" />
+    <option name="totallyTimeSpent" value="2798000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
