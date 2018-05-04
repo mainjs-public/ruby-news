@@ -42,13 +42,24 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
-  field :categorySlug, Types::CategoryType do
+  field :categorySlug, Types::CategorySlugPaginationType do
     description "Get category by slug"
     argument :slug, !types.String
+    argument :start, types.Int
+    argument :length, types.Int
     resolve -> (obj, args, ctx) {
       category = Category.find_by(slug: args['slug'])
       return unless category
-      category
+      blogs = Blog.where(category_id: category.id)
+      count = blogs.count
+      OpenStruct.new({
+           category: category,
+           count: count,
+           start: args['start'],
+           length: args['length'],
+           data: blogs.sort({created: -1}).skip(args['start']).limit(args['length']),
+           hasNextPage: (args['start'] + args['length']) < count
+       })
     }
   end
 
