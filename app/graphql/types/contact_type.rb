@@ -8,5 +8,6 @@ Types::ContactType = GraphQL::ObjectType.define do
   field :phone, types.String
   field :message, types.String
   field :read, !types.Boolean
+  field :created, !Types::DateTimeType
 end
 

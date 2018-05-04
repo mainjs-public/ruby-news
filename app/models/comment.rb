@@ -10,5 +10,5 @@ class Comment
   field :website, type: String
   field :blog_id, type: String
   field :comment, type: String
-  field :created, type: DateTime
+  field :created, type: DateTime, default: Time.now
 end
