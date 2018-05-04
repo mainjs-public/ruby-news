@@ -46,7 +46,9 @@ Types::QueryType = GraphQL::ObjectType.define do
     description "Get category by slug"
     argument :slug, !types.String
     resolve -> (obj, args, ctx) {
-      Category.find_by(slug: args['slug'])
+      category = Category.find_by(slug: args['slug'])
+      return unless category
+      category
     }
   end
 
@@ -72,6 +74,26 @@ Types::QueryType = GraphQL::ObjectType.define do
            data: Blog.all().sort({created: -1}).skip(args['start']).limit(args['length']),
            hasNextPage: (args['start'] + args['length']) < count
        })
+    }
+  end
+
+  # Get Comment pagination by id Blog
+  field :commentPaginationByIdBlog, Types::CommentPaginationType do
+    description "Get comment pagination by id Blog"
+    argument :blog_id, types.ID
+    argument :start, types.Int
+    argument :length, types.Int
+
+    resolve -> (obj, args, ctx) {
+      comment = Comment.where({ blog_id: args['blog_id'] })
+      count = comment.count
+      OpenStruct.new({
+                         count: count,
+                         start: args['start'],
+                         length: args['length'],
+                         data: comment.sort({created: -1}).skip(args['start']).limit(args['length']),
+                         hasNextPage: (args['start'] + args['length']) < count
+                     })
     }
   end
 
