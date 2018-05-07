@@ -1,4 +1,5 @@
 class Functions::CreateUser < GraphQL::Function
+  description 'Create User'
   # Define `initialize` to store field-level options, eg
   #
   #     field :myField, function: Functions::CreateUser.new(type: MyType)
