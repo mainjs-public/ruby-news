@@ -11,6 +11,7 @@ class Functions::CreateUser < GraphQL::Function
   # add arguments by type:
   argument :name, !types.String
   argument :email, !types.String
+  argument :role, !types.String
   argument :password, !types.String
 
   type Types::UserType
@@ -20,6 +21,7 @@ class Functions::CreateUser < GraphQL::Function
     User.create!(
         name: args[:name],
         email: args[:email],
+        role: args[:role],
         password: args[:password],
     )
   end

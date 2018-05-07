@@ -248,4 +248,11 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
+  field :users, !types[Types::UserType] do
+    description "Get users"
+    resolve -> (obj, args, ctx) {
+      User.all()
+    }
+  end
+
 end

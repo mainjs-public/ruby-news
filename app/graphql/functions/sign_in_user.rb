@@ -39,6 +39,7 @@ class Functions::SignInUser < GraphQL::Function
             user: {
                 id: user._id.to_s,
                 email: user.email,
+                role: user.role
             }
         }
     }
