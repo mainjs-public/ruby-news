@@ -11,6 +11,7 @@ Mutations::MutationBlog = GraphQL::Relay::Mutation.define do
   input_field :content, types.String
   input_field :image, types.String
   input_field :status, types.Boolean
+  input_field :state, types.String
   input_field :tags, types[types.String]
 
   resolve ->(obj, inputs, ctx) {
@@ -27,6 +28,7 @@ Mutations::MutationBlog = GraphQL::Relay::Mutation.define do
             content: inputs[:content],
             image: inputs[:image],
             status: inputs[:status],
+            state: inputs[:state],
             tags: inputs[:tags],
             )
         blog
@@ -39,6 +41,7 @@ Mutations::MutationBlog = GraphQL::Relay::Mutation.define do
             content: inputs[:content],
             image: inputs[:image],
             status: inputs[:status],
+            state: inputs[:state],
             tags: inputs[:tags],
             )
       end
