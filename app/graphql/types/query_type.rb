@@ -88,6 +88,37 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
+  # Get list blog by tag
+  field :tagPagination, Types::BlogPaginationType do
+    description "Get blog by tag"
+    argument :tag, !types.String
+    argument :start, types.Int
+    argument :length, types.Int
+
+    resolve -> (obj, args, ctx) {
+      newBlog = Array.new
+      Blog.all().sort({created: -1}).each do |blog|
+        check = false
+        blog.tags.each do |tag|
+          if (tag.downcase.gsub(' ', '-') == args['tag'])
+            check = true
+          end
+        end
+        if (check)
+          newBlog.push(blog)
+        end
+      end
+      count = newBlog.length
+      OpenStruct.new({
+          count: count,
+          start: args['start'],
+          length: args['length'],
+          data: newBlog,
+          hasNextPage: (args['start'] + args['length']) < count
+        })
+    }
+  end
+
   # Get Comment pagination by id Blog
   field :commentPaginationByIdBlog, Types::CommentPaginationType do
     description "Get comment pagination by id Blog"
