@@ -119,6 +119,30 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
+  field :search, Types::BlogPaginationType do
+    description "Search blog"
+
+    argument :query, types.String
+    argument :start, types.Int
+    argument :length, types.Int
+
+    resolve -> (obj, args, ctx) {
+      if args[:query]
+        Blog.reindex
+        blogs = Blog.search args[:query], limit: args['length'], offset: args['start']
+        OpenStruct.new({
+          count: blogs.size,
+          start: args['start'],
+          length: args['length'],
+          data: blogs,
+          hasNextPage: (args['start'] + args['length']) < blogs.size
+        })
+      else
+        nil
+      end
+    }
+  end
+
   # Get Comment pagination by id Blog
   field :commentPaginationByIdBlog, Types::CommentPaginationType do
     description "Get comment pagination by id Blog"

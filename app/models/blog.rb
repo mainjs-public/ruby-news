@@ -1,6 +1,8 @@
 class Blog
   include Mongoid::Document
 
+  searchkick
+
   has_many :comments, dependent: :destroy
   belongs_to :category, validate: true
 

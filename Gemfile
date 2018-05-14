@@ -14,6 +14,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'carrierwave', '~> 1.0'
 
+gem 'searchkick'
+
 gem 'jwt'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
