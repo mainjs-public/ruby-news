@@ -1,5 +1,5 @@
 # config valid for current version and patch releases of Capistrano
-# lock "~> 3.10.2"
+lock "~> 3.10.2"
 
 # set :application, "my_app_name"
 # set :repo_url, "git@example.com:me/my_repo.git"
@@ -43,7 +43,7 @@ server '104.236.119.26', port: 443, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:dangtienngoc/new24-backend.git'
 set :application,     'new24'
-set :user,            'deploy'
+set :user,            'root'
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
 
