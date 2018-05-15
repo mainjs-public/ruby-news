@@ -5,8 +5,10 @@ class Blog
 
   has_many :comments, dependent: :destroy
   belongs_to :category, validate: true
+  belongs_to :user, validate: true
 
   field :category_id, type: String
+  field :user_id, type: String
   field :slug, type: String
   field :name, type: String
   field :description, type: String

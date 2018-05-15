@@ -2,6 +2,9 @@ include ActiveModel::SecurePassword
 class User
   include Mongoid::Document
   has_secure_password
+
+  has_many :blogs, dependent: :restrict
+
   field :name, type: String
   field :email, type: String
   field :role, type: String

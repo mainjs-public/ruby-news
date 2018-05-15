@@ -30,7 +30,7 @@ Mutations::MutationBlog = GraphQL::Relay::Mutation.define do
             status: inputs[:status],
             state: inputs[:state],
             tags: inputs[:tags],
-            )
+          )
         blog
       else
         Blog.create!(
@@ -43,7 +43,8 @@ Mutations::MutationBlog = GraphQL::Relay::Mutation.define do
             status: inputs[:status],
             state: inputs[:state],
             tags: inputs[:tags],
-            )
+            user_id: ctx[:current_user].id
+          )
       end
     end
   }
