@@ -77,17 +77,15 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :length, types.Int
 
     resolve -> (obj, args, ctx) {
-      blogsList = nil
       unless ctx[:current_user]
         count = Blog.count
-        blogsList = OpenStruct.new({
+        OpenStruct.new({
              count: count,
              start: args['start'],
              length: args['length'],
              data: Blog.all().sort({created: -1}).skip(args['start']).limit(args['length']),
              hasNextPage: (args['start'] + args['length']) < count
          })
-        blogsList
       else
         if ctx[:current_user].role == 'Contributor'
           blogs = Blog.where({ user_id: ctx[:current_user].id })
@@ -100,7 +98,14 @@ Types::QueryType = GraphQL::ObjectType.define do
              hasNextPage: (args['start'] + args['length']) < count
          })
         else
-          blogsList
+          count = Blog.count
+          OpenStruct.new({
+               count: count,
+               start: args['start'],
+               length: args['length'],
+               data: Blog.all().sort({created: -1}).skip(args['start']).limit(args['length']),
+               hasNextPage: (args['start'] + args['length']) < count
+           })
         end
       end
     }
