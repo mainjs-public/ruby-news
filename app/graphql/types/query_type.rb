@@ -140,6 +140,15 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
+  # Get page by ID
+  field :page, Types::PageType do
+    description "Get page by id"
+    argument :pageId, types.ID, as: :id
+    resolve -> (obj, args, ctx) {
+      Page.find(args['id'])
+    }
+  end
+
   # Get list blog by tag
   field :tagPagination, Types::BlogPaginationType do
     description "Get blog by tag"
