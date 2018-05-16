@@ -12,6 +12,7 @@ Types::MutationType = GraphQL::ObjectType.define do
   field :deleteCategory, Mutations::DeleteCategory.field
   field :deleteContact, Mutations::DeleteContact.field
   field :deleteUser, Mutations::DeleteUser.field
+  field :deletePage, Mutations::DeletePage.field
   field :mutationCategory, Mutations::MutationCategory.field
   field :mutationPage, Mutations::MutationPage.field
   field :addSetting, Mutations::AddSetting.field
