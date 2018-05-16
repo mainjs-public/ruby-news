@@ -17,7 +17,7 @@ class Blog
   field :updated, type: DateTime, default: Time.now
   field :image, type: String
   field :status, type: Boolean, default: true
-  field :viewed, type: Integer
+  field :viewed, type: Integer, default: 0
   field :tags, type: Array
   field :state, type: String
 

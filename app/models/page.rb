@@ -12,7 +12,7 @@ class Page
   field :updated, type: DateTime, default: Time.now
   field :image, type: String
   field :status, type: Boolean, default: true
-  field :viewed, type: Integer
+  field :viewed, type: Integer, default: 0
   field :state, type: String
 
   validates_uniqueness_of :slug

@@ -134,7 +134,9 @@ Types::QueryType = GraphQL::ObjectType.define do
     description "Get page by slug"
     argument :slug, !types.String
     resolve -> (obj, args, ctx) {
-      Page.find_by(slug: args['slug'])
+      page = Page.find_by(slug: args['slug'])
+      page.update_attribute(:viewed, page.viewed + 1)
+      page
     }
   end
 
@@ -284,7 +286,9 @@ Types::QueryType = GraphQL::ObjectType.define do
     description "Get blog by slug"
     argument :slug, !types.String
     resolve -> (obj, args, ctx) {
-      Blog.find_by(slug: args['slug'])
+      blog = Blog.find_by(slug: args['slug'])
+      blog.update_attribute(:viewed, blog.viewed + 1)
+      blog
     }
   end
 
