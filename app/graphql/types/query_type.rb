@@ -111,6 +111,33 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
+  # Pagination page
+  field :pagePagination, Types::PagePaginationType do
+    description "Get page for pagination"
+    argument :start, types.Int
+    argument :length, types.Int
+
+    resolve -> (obj, args, ctx) {
+      count = Page.count
+      OpenStruct.new({
+           count: count,
+           start: args['start'],
+           length: args['length'],
+           data: Page.all().sort({created: -1}).skip(args['start']).limit(args['length']),
+           hasNextPage: (args['start'] + args['length']) < count
+       })
+    }
+  end
+
+  # get page by slug
+  field :pageSlug, Types::PageType do
+    description "Get page by slug"
+    argument :slug, !types.String
+    resolve -> (obj, args, ctx) {
+      Page.find_by(slug: args['slug'])
+    }
+  end
+
   # Get list blog by tag
   field :tagPagination, Types::BlogPaginationType do
     description "Get blog by tag"
