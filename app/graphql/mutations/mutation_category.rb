@@ -23,7 +23,7 @@ Mutations::MutationCategory = GraphQL::Relay::Mutation.define do
             description: inputs[:description],
             image: inputs[:image],
             status: inputs[:status],
-            )
+          )
         category
       else
         Category.create!(
@@ -32,7 +32,7 @@ Mutations::MutationCategory = GraphQL::Relay::Mutation.define do
             description: inputs[:description],
             image: inputs[:image],
             status: inputs[:status],
-            )
+          )
       end
     end
   }

@@ -4,14 +4,14 @@ Mutations::DeleteCategory = GraphQL::Relay::Mutation.define do
 
   input_field :categoryId, !types.ID
 
-  return_field :count, types.Int
+  return_field :count, types.Boolean
 
   resolve ->(obj, args, ctx) {
   	unless ctx[:current_user]
   	 	GraphQL::ExecutionError.new("You don't have permission to mutation data.")
   	else
 	    response = {
-	    	count: Category.where(id: args[:categoryId]).delete
+	    	count: Category.find(args[:categoryId]).delete
 	    }
 	end	
   }
