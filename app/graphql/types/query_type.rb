@@ -135,7 +135,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :slug, !types.String
     resolve -> (obj, args, ctx) {
       page = Page.find_by(slug: args['slug'])
-      page.update_attribute(:viewed, page.viewed + 1)
+      # page.update_attribute(:viewed, page.viewed + 1)
       page
     }
   end
@@ -296,7 +296,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :slug, !types.String
     resolve -> (obj, args, ctx) {
       blog = Blog.find_by(slug: args['slug'])
-      blog.update_attribute(:viewed, blog.viewed + 1)
+      # blog.update_attribute(:viewed, blog.viewed + 1)
       blog
     }
   end
